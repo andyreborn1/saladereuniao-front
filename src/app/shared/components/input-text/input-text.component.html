@@ -1,1 +1,5 @@
-<p>input-text works!</p>
+<div [formGroup]="formGroup">
+  <mat-form-field class="full-width">
+    <input matInput [placeholder]="titulo" [name]="controlName" [formControlName]="controlName">
+  </mat-form-field>
+</div>
