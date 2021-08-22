@@ -8,6 +8,7 @@ import { ComponentsModule } from './shared/components/components.module';
 import { NotFoundComponent } from './error/not-found-component/not-found-component.component';
 import { RoomModule } from './room/room.module';
 import { RoomService } from './core/room.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
@@ -17,6 +18,7 @@ import { RoomService } from './core/room.service';
     DemoMaterialModule,
     ComponentsModule,
     RoomModule,
+    HttpClientModule,
   ],
   providers: [RoomService],
   bootstrap: [AppComponent],

@@ -1,1 +1,14 @@
-<p>create works!</p>
+<mat-toolbar class="app-title">Cadastrar Filme</mat-toolbar>
+<div class="main-div">
+  <mat-card class="center width50" *ngIf="create">
+    <form autocomplete="off" novalidate [formGroup]="create" (ngSubmit)="submit()" (ngReset)="back()">
+      <mat-card-content>
+        <app-input-text titulo="Título" controlName="name" [formGroup]="create"></app-input-text>
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="submit" color="accent" mat-raised-button>Salvar</button>
+        <button type="back" color="warn" mat-raised-button>Cancelar</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
