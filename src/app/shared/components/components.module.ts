@@ -36,6 +36,6 @@ import { AlertComponent } from './alert/alert.component';
     NgxMatNativeDateModule,
     DemoMaterialModule,
   ],
-  exports: [HeaderComponent, InputTextComponent],
+  exports: [HeaderComponent, InputTextComponent, AlertComponent],
 })
 export class ComponentsModule {}

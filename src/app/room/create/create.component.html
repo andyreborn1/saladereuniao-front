@@ -1,7 +1,7 @@
 <mat-toolbar class="app-title">Cadastrar Reunião</mat-toolbar>
 <div class="main-div">
   <mat-card class="center width50" *ngIf="create">
-    <form autocomplete="off" novalidate [formGroup]="create" (ngSubmit)="submit()" (ngReset)="back()">
+    <form autocomplete="off" novalidate [formGroup]="create" (ngSubmit)="submit()" (ngReset)="reset()">
       <mat-card-content>
         <app-input-text titulo="Nome" controlName="name" [formGroup]="create"></app-input-text>
         <app-input-text titulo="Data" controlName="date" [formGroup]="create"></app-input-text>

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from 'src/app/core/room.service';
+import { Alert } from 'src/app/model/alert';
 import { Room } from 'src/app/model/room';
+import { AlertComponent } from 'src/app/shared/components/alert/alert.component';
 
 @Component({
   selector: 'app-create',
@@ -18,6 +21,7 @@ export class CreateComponent implements OnInit {
     private fb: FormBuilder,
     private roomService: RoomService,
     private router: Router,
+    public dialog: MatDialog,
     private activeRoute: ActivatedRoute
   ) {}
 
@@ -37,6 +41,11 @@ export class CreateComponent implements OnInit {
   }
 
   submit() {
+    this.create.markAllAsTouched();
+    if (this.create.invalid) {
+      return;
+    }
+
     const room = this.create.getRawValue() as Room;
     if (this.id) {
       room.id = this.id;
@@ -46,8 +55,8 @@ export class CreateComponent implements OnInit {
     }
   }
 
-  back() {
-    this.router.navigate(['/rooms']);
+  reset() {
+    this.create.reset();
   }
 
   edit(room: Room) {
@@ -74,6 +83,37 @@ export class CreateComponent implements OnInit {
   }
 
   private save(room: Room) {
-    this.roomService.save(room).subscribe();
+    this.roomService.save(room).subscribe(
+      () => {
+        const config = {
+          data: {
+            btnOk: 'Ir para inicio',
+            btnCancel: 'Cadastrar nova reunião',
+            colorBtnCancel: 'primary',
+            hasBtnClose: true,
+          } as Alert,
+        };
+
+        const dialogRef = this.dialog.open(AlertComponent, config);
+        dialogRef.afterClosed().subscribe((option: boolean) => {
+          if (option) {
+            this.router.navigateByUrl('rooms');
+          } else {
+            this.reset();
+          }
+        });
+      },
+      () => {
+        const config = {
+          data: {
+            title: 'Erro ao editar registro',
+            description: 'Não foi possível editar o seu registro',
+            colorBtnOk: 'warm',
+            btnOk: 'Fechar',
+          } as Alert,
+        };
+        this.dialog.open(AlertComponent, config);
+      }
+    );
   }
 }
