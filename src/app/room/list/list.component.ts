@@ -31,4 +31,9 @@ export class ListComponent implements OnInit {
   open(id: number) {
     this.router.navigate(['/rooms/create/' + id]);
   }
+
+  delete(id: number) {
+    this.roomService.delete(id).subscribe();
+    this.listRooms();
+  }
 }
