@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './error/not-found-component/not-found-component.component';
 import { CreateComponent } from './room/create/create.component';
-import { DetailsComponent } from './room/details/details.component';
 import { ListComponent } from './room/list/list.component';
 
 const routes: Routes = [
@@ -30,11 +29,6 @@ const routes: Routes = [
             component: CreateComponent,
           },
         ],
-      },
-      {
-        path: ':id',
-        component: DetailsComponent,
-        pathMatch: 'full',
       },
     ],
   },

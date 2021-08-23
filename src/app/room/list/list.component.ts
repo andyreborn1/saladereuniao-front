@@ -23,9 +23,7 @@ export class ListComponent implements OnInit {
   }
 
   private listRooms() {
-    this.roomService
-      .findAll()
-      .subscribe((room: Room[]) => this.rooms.push(...room));
+    this.roomService.findAll().subscribe((room: Room[]) => (this.rooms = room));
   }
 
   open(id: number) {
