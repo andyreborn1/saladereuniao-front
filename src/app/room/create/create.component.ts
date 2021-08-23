@@ -46,7 +46,9 @@ export class CreateComponent implements OnInit {
     }
   }
 
-  back() {}
+  back() {
+    this.router.navigate(['/rooms']);
+  }
 
   edit(room: Room) {
     this.roomService.save(room).subscribe();

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RoomService } from 'src/app/core/room.service';
+import { Room } from 'src/app/model/room';
 
 @Component({
   selector: 'app-list',
@@ -6,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor() {}
+  rooms: Room[] = [];
 
-  ngOnInit(): void {}
+  constructor(
+    private roomService: RoomService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
-  open() {}
+  ngOnInit(): void {
+    this.listRooms();
+  }
+
+  private listRooms() {
+    this.roomService
+      .findAll()
+      .subscribe((room: Room[]) => this.rooms.push(...room));
+  }
+
+  open(id: number) {
+    this.router.navigate(['/rooms/create/' + id]);
+  }
 }
