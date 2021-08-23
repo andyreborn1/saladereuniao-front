@@ -15,6 +15,7 @@ import {
 
 import { InputDateComponent } from './input-date/input-date.component';
 import { InputHourComponent } from './input-hour/input-hour.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { InputHourComponent } from './input-hour/input-hour.component';
     InputTextComponent,
     InputDateComponent,
     InputHourComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
